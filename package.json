@@ -1,0 +1,38 @@
+{
+  "name": "javascript_project1",
+  "version": "1.0.0",
+  "description": "\"Stupid Soccer\" is a 2 player 2d top down wacky soccer game.",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JemComp/javascript_project1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JemComp/javascript_project1/issues"
+  },
+  "homepage": "https://github.com/JemComp/javascript_project1#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.5",
+    "core-js": "^3.22.2",
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "regenerator-runtime": "^0.13.9",
+    "resolve-cwd": "^3.0.0",
+    "sass": "^1.50.1",
+    "sass-loader": "^12.6.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "browserslist": [
+    "defaults"
+  ]
+}
