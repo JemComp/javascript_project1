@@ -10,11 +10,11 @@ class Game {
         this.players = []; 
         this.ball = new Ball({ 
             pos: [this.DIM_X/2, this.DIM_Y/2],
-            vel: [10,10]
+            vel: [0,20]
         })
         this.ball2 = new Ball({ 
             pos: [this.DIM_X/2, this.DIM_Y/2],
-            vel: [-10,10]
+            vel: [0,0]
         })
 
         this.movable = [this.ball, this.ball2];
@@ -69,8 +69,12 @@ class Game {
     checkCollisions() {
         for (let i = 0; i < this.movable.length-1; i++) {
             for (let j = i+1; j < this.movable.length; j++) {
-                if (this.collision(this.movable[i], this.movable[j])) {
+                const obj1 = this.movable[i];
+                const obj2 = this.movable[j];
+                if (this.collision(obj1, obj2)) {
                     console.log("hit!")
+                    obj1.bounce(obj2);
+
                 }
             }
         }

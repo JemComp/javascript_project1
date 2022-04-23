@@ -38,8 +38,27 @@ class MovingObject {
     }
 
     bounce(otherObj) {
+        // find angles of collision
+        // if (Math.abs(this.vel[1]) < 0.01) {
+        //     this.vel[1] = 0
+        // }
+        // if (Math.abs(otherObj.vel[1]) < 0.01) {
+        //     otherObj.vel[1] = 0
+        const angle1 = this.findAngle()
+        const angle2 = otherObj.findAngle()
+        console.log(angle1, angle2)
 
 
+    }
+
+    findAngle() {
+        let z = (this.vel[0] + ((this.vel[0] ** 2 + this.vel[1] ** 2) ** 0.5));
+        if (!z) {
+            z = 0.001
+        }
+        let angle = 2 * Math.atan(this.vel[1] / z)
+
+        return angle
     }
 
     
