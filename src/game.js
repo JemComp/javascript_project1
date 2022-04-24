@@ -10,11 +10,14 @@ class Game {
         this.players = []; 
         this.ball = new Ball({ 
             pos: [this.DIM_X/2, this.DIM_Y/2],
-            vel: [0,20]
+            vel: [2,0]
         })
+        this.ball.color = "yellow";
+        this.ball.radius = 30;
+        this.ball.mass = 50;
         this.ball2 = new Ball({ 
-            pos: [this.DIM_X/2, this.DIM_Y/2],
-            vel: [0,0]
+            pos: [this.DIM_X/2 + 50, this.DIM_Y/2 ],
+            vel: [0, 10]
         })
 
         this.movable = [this.ball, this.ball2];
@@ -57,10 +60,9 @@ class Game {
     //checks collision
     collision(obj1, obj2) {
         if (obj1.shape === "circle" && obj2.shape === "circle") {
-            const dx = obj1.pos[0] - obj2.pos[0]
-            const dy = obj1.pos[1] - obj2.pos[1]
+            const dx = (obj1.pos[0] + obj1.vel[0]) - (obj2.pos[0] + obj2.vel[0])
+            const dy = (obj1.pos[1] + obj1.vel[1]) - (obj2.pos[1] + obj2.vel[1])
             const dist = obj1.radius + obj2.radius
-            // console.log(dx ** 2 + dy ** 2 <= dist **2)
             return (dx ** 2 + dy ** 2 <= dist **2)
         }
     }
@@ -85,7 +87,6 @@ class Game {
         this.movable.forEach( (obj) => {
             obj.draw(ctx)
         })
-        // this.ball.draw(ctx);
     }
 
     
