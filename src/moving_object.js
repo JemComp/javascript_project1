@@ -51,8 +51,9 @@ class MovingObject {
 
 
         let contactAngle =  ((angle2 - angle1) - line + 2 * Math.PI) % (2 * Math.PI);
-        console.log(angle1, angle2, line, contactAngle)
-        // debugger
+        // console.log(angle1, angle2, line, contactAngle)
+
+
         const v1 = (this.vel[0] ** 2 + this.vel[1] ** 2) ** 0.5;
         const v2 = (otherObj.vel[0] ** 2 + otherObj.vel[1] ** 2) ** 0.5;
         const eq = (v1 * Math.cos(angle1-contactAngle) * (this.mass- otherObj.mass) + 2*otherObj.mass * v2 * Math.cos(angle2 - contactAngle))/(this.mass + otherObj.mass)
@@ -64,10 +65,8 @@ class MovingObject {
 
         const v2x = eq2 * Math.cos(contactAngle) + v2 * Math.sin(angle2 - contactAngle) * Math.cos(contactAngle + Math.PI/2)
         const v2y = eq2 * Math.sin(contactAngle) + v2 * Math.sin(angle2 - contactAngle) * Math.sin(contactAngle + Math.PI/2)
-        console.log(this.vel, otherObj.vel)
-        this.vel = [v1x, v1y];
-        otherObj.vel = [v2x, v2y];
-        // debugger
+        this.vel = [v1x * this.friction, v1y * this.friction];
+        otherObj.vel = [v2x * this.friction, v2y * this.friction];
     }
 
     findAngle() {

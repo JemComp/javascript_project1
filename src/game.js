@@ -1,4 +1,5 @@
 import Ball from "./ball";
+import Player from "./player";
 // const Field = require(",/field")
 
 
@@ -10,17 +11,16 @@ class Game {
         this.players = []; 
         this.ball = new Ball({ 
             pos: [this.DIM_X/2, this.DIM_Y/2],
-            vel: [2,0]
+            vel: [10,0]
         })
-        this.ball.color = "yellow";
-        this.ball.radius = 30;
-        this.ball.mass = 50;
-        this.ball2 = new Ball({ 
+
+        this.player = new Player({ 
             pos: [this.DIM_X/2 + 50, this.DIM_Y/2 ],
             vel: [0, 10]
         })
 
-        this.movable = [this.ball, this.ball2];
+        this.movables = [this.ball, this.player];
+        this.pressedKeys = {};
     }
 
     getDIM() {
@@ -39,7 +39,7 @@ class Game {
     move() {
         this.checkCollisions();
 
-        this.movable.forEach( (obj) => {
+        this.movables.forEach( (obj) => {
             this.reboundWalls(obj)
             obj.move()
         })
@@ -63,16 +63,16 @@ class Game {
             const dx = (obj1.pos[0] + obj1.vel[0]) - (obj2.pos[0] + obj2.vel[0])
             const dy = (obj1.pos[1] + obj1.vel[1]) - (obj2.pos[1] + obj2.vel[1])
             const dist = obj1.radius + obj2.radius
-            return (dx ** 2 + dy ** 2 <= dist **2)
+            return (dx ** 2 + dy ** 2 <= dist ** 2)
         }
     }
 
     //runs through all movables to find collisions
     checkCollisions() {
-        for (let i = 0; i < this.movable.length-1; i++) {
-            for (let j = i+1; j < this.movable.length; j++) {
-                const obj1 = this.movable[i];
-                const obj2 = this.movable[j];
+        for (let i = 0; i < this.movables.length-1; i++) {
+            for (let j = i+1; j < this.movables.length; j++) {
+                const obj1 = this.movables[i];
+                const obj2 = this.movables[j];
                 if (this.collision(obj1, obj2)) {
                     console.log("hit!")
                     obj1.bounce(obj2);
@@ -84,9 +84,18 @@ class Game {
     
 
     draw(ctx) {
-        this.movable.forEach( (obj) => {
+        this.movables.forEach( (obj) => {
             obj.draw(ctx)
         })
+    }
+
+    handleInputs() {
+        for (var key in this.pressedKeys){
+            if (this.pressedKeys[key] === true) {
+                console.log(key)
+            }
+            
+          }
     }
 
     

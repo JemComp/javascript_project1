@@ -8,7 +8,7 @@ class Ball extends MovingObject {
             pos: options['pos'],
             vel: options['vel'],
             color: "gray",
-            radius: 15
+            radius: 10
         });
     }
 
