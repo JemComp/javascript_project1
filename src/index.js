@@ -14,12 +14,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     view.run();
 
     window.addEventListener("keydown", (event) => {
-        game.pressedKeys[event.code] = true
+        game.pressedKeys[event.code] = true;
         // console.log("press")
     })
 
     window.addEventListener("keyup", (event) => {
-        game.pressedKeys[event.code] = false
+        game.pressedKeys[event.code] = false;
+        game.keyToggled[event.code] = false;
 
     })
 

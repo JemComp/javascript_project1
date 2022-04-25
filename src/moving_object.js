@@ -36,6 +36,12 @@ class MovingObject {
     move() {
         this.vel[0] = this.friction*this.vel[0];
         this.vel[1] = this.friction* this.vel[1]
+        // if (Math.abs(this.vel[0]) < 0.1 ) {
+        //     this.vel[0] = 0;
+        // } 
+        // if (Math.abs(this.vel[1]) < 0.1) {
+        //     this.vel[1] = 0;
+        // }
         this.pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];
     }
 
