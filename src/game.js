@@ -1,7 +1,9 @@
 import Ball from "./ball";
 import Player from "./player";
 import Placeable from "./placeable";
-// const Field = require(",/field")
+import GoalZone from "./goal_zone";
+import Scorecard from "./scorecard";
+// const Field = require("./field")
 
 
 class Game {
@@ -12,20 +14,40 @@ class Game {
         this.players = []; 
         this.ball = new Ball({ 
             pos: [this.DIM_X/2, this.DIM_Y/2],
-            vel: [-50,0]
+            vel: [0,0]
         })
 
-        this.player = new Player({ 
-            pos: [this.DIM_X/2 + 50, this.DIM_Y/2 ],
-            vel: [10, 0]
-        })
-
-        this.placeable1 = new Placeable({
-            pos: [this.DIM_X/2 + 50, this.DIM_Y/2 ],
+        this.player1 = new Player({ 
+            pos: [this.DIM_X/2 - 150, this.DIM_Y/2 ],
             vel: [0, 0],
-            dim: [50,50]
+            team: 1
         })
-        this.movables = [this.ball, this.player, this.placeable1];
+
+        this.player2 = new Player({ 
+            pos: [this.DIM_X/2 + 150, this.DIM_Y/2 ],
+            vel: [0, 0],
+            team: 2,
+            color: "blue"
+        })
+
+
+        this.goal1 = new GoalZone({
+            pos: [this.DIM_X-50, this.DIM_Y/2 - 25], 
+            vel: [0, 0],
+            dim: [50,50],
+            team: 1
+
+        })
+
+        this.goal2 = new GoalZone({
+            pos: [0, this.DIM_Y/2 - 25],
+            vel: [0, 0],
+            dim: [50,50],
+            team: 2
+        })
+
+        this.scoreCard = new Scorecard([this.DIM_X/2,this.DIM_Y/2])
+        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2];
         this.pressedKeys = {};
         this.keyToggled = {};
     }
@@ -36,10 +58,8 @@ class Game {
 
     //new game
     reset() {
-        this.ball = new Ball ({ 
-            pos: [this.DIM_X/2, this.DIX_Y/2],
-            vel: [0,0]
-        })
+        this.ball.pos = [this.DIM_X/2, this.DIM_Y/2]
+        this.ball.vel = [0,0]
     }
 
     //called every frame
@@ -89,7 +109,7 @@ class Game {
             return this.rectCircleCollision(obj1, obj2)
         }
         if(obj1.shape === "rectangle" && obj2.shape === "circle") {
-            // return this.rectCircleCollision(obj2, obj1)
+            return this.rectCircleCollision(obj2, obj1)
 
         }
     }
@@ -112,7 +132,7 @@ class Game {
         return(dx*dx+dy*dy<=circle.radius * circle.radius);
     }
 
-    //runs through all movables to find collisions
+    //runs through all movables to find collisions  
     checkCollisions() {
         for (let i = 0; i < this.movables.length-1; i++) {
             for (let j = i+1; j < this.movables.length; j++) {
@@ -120,8 +140,17 @@ class Game {
                 const obj2 = this.movables[j];
                 if (this.collision(obj1, obj2)) {
                     console.log("hit!")
+                    // console.log(obj1.constructor.name, obj2.constructor.name)
                     if (obj1.shape === "circle" && obj2.shape === "circle") {
                         obj1.bounce(obj2);
+                    }
+                    if (obj1.constructor.name === "Ball" && obj2.constructor.name === "GoalZone"){
+                        this.scoreGoal(obj2.team)
+                        console.log("goal!")
+                    }
+                    if (obj2.constructor.name === "Ball" && obj1.constructor.name === "GoalZone"){
+                        this.scoreGoal(obj2.team)
+                        console.log("goal!")
                     }
 
                 }
@@ -131,6 +160,7 @@ class Game {
     
 
     draw(ctx) {
+        this.scoreCard.draw(ctx)
         this.movables.forEach( (obj) => {
             obj.draw(ctx)
         })
@@ -141,20 +171,39 @@ class Game {
             if (this.pressedKeys[key] === true) {
                 // console.log(key)
                 if (key === "KeyS") {
-                    this.player.moveInput("down")
+                    this.player1.moveInput("down")
                 }
                 if (key === "KeyW") {
-                    this.player.moveInput("up")
+                    this.player1.moveInput("up")
                 }
                 if (key === "KeyA") {
-                    this.player.moveInput("left")
+                    this.player1.moveInput("left")
                 }
                 if (key === "KeyD") {
-                    this.player.moveInput("right")
+                    this.player1.moveInput("right")
                 }
                 if (key === "Space") {
                     if (!this.keyToggled[key]) {
-                    this.player.moveInput("launch")
+                    this.player1.moveInput("launch")
+                    this.pressedKeys[key] = false;
+                    this.keyToggled[key] = true;
+                    }
+                }
+                if (key === "ArrowDown") {
+                    this.player2.moveInput("down")
+                }
+                if (key === "ArrowUp") {
+                    this.player2.moveInput("up")
+                }
+                if (key === "ArrowLeft") {
+                    this.player2.moveInput("left")
+                }
+                if (key === "ArrowRight") {
+                    this.player2.moveInput("right")
+                }
+                if (key === "KeyM") {
+                    if (!this.keyToggled[key]) {
+                    this.player2.moveInput("launch")
                     this.pressedKeys[key] = false;
                     this.keyToggled[key] = true;
                     }
@@ -162,6 +211,18 @@ class Game {
             }
             
           }
+    }
+
+    scoreGoal(team) {
+        if (team === 1) {
+            this.scoreCard.score[0] += 1
+        }
+        if (team === 2) {
+            this.scoreCard.score[1] += 1
+        }
+        
+
+        this.reset();
     }
 
     

@@ -9,6 +9,7 @@ class Player extends MovingObject {
             color: options["color"] ||= "red",
             radius: 20
         });
+        this.team = options["team"];
         this.friction = .9;
     }
 
@@ -16,22 +17,22 @@ class Player extends MovingObject {
     moveInput(direction) {
         switch(direction) {
             case "up":
-                if (this.vel[1] > -6) {
+                if (this.vel[1] > -8) {
                     this.vel[1] -= .5;
                 }  
               break;
             case "down":
-              if (this.vel[1] < 6) {
+              if (this.vel[1] < 8) {
                   this.vel[1] += .5;
               }  
               break;
             case "left":
-                if (this.vel[0] > -6) {
+                if (this.vel[0] > -8) {
                     this.vel[0] -= .5;
                 }  
                 break;
             case "right":
-                if (this.vel[0] < 6) {
+                if (this.vel[0] < 8) {
                     this.vel[0] += .5;
                 }  
                 break;

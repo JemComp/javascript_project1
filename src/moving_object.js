@@ -71,8 +71,8 @@ class MovingObject {
 
         const v2x = eq2 * Math.cos(contactAngle) + v2 * Math.sin(angle2 - contactAngle) * Math.cos(contactAngle + Math.PI/2)
         const v2y = eq2 * Math.sin(contactAngle) + v2 * Math.sin(angle2 - contactAngle) * Math.sin(contactAngle + Math.PI/2)
-        this.vel = [v1x * this.friction, v1y * this.friction];
-        otherObj.vel = [v2x * this.friction, v2y * this.friction];
+        this.vel = [v1x, v1y];
+        otherObj.vel = [v2x, v2y];
     }
 
     findAngle() {

@@ -9,6 +9,7 @@ console.log("Webpack is working!")
 window.addEventListener("DOMContentLoaded", (event) => {
     let canvas = document.getElementById('game-canvas');
     let ctx = canvas.getContext("2d");
+    ctx.font = '50px serif';
     let game = new Game()
     let view = new GameView(game, ctx);
     view.run();
