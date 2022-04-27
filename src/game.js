@@ -142,7 +142,7 @@ class Game {
                     console.log("hit!")
                     // console.log(obj1.constructor.name, obj2.constructor.name)
                     if (obj1.shape === "circle" && obj2.shape === "circle") {
-                        obj1.bounce(obj2);
+                        obj1.bounce(obj2, this.ctx);
                     }
                     if (obj1.constructor.name === "Ball" && obj2.constructor.name === "GoalZone"){
                         this.scoreGoal(obj2.team)
