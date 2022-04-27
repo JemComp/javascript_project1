@@ -46,8 +46,15 @@ class Game {
             team: 2
         })
 
+        this.block = new Placeable ({   
+            pos: [this.DIM_X/2 + 25, this.DIM_Y/2 - 25],
+            vel: [0, 0],
+            dim: [50,50],
+            mass: 200
+        })
+
         this.scoreCard = new Scorecard([this.DIM_X/2,this.DIM_Y/2])
-        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2];
+        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2, this.block];
         this.pressedKeys = {};
         this.keyToggled = {};
     }
@@ -63,8 +70,8 @@ class Game {
     }
 
     //called every frame
-    move() {
-        this.checkCollisions();
+    move(ctx) {
+        this.checkCollisions(ctx);
 
         this.movables.forEach( (obj) => {
             this.reboundWalls(obj)
@@ -142,15 +149,38 @@ class Game {
                     console.log("hit!")
                     // console.log(obj1.constructor.name, obj2.constructor.name)
                     if (obj1.shape === "circle" && obj2.shape === "circle") {
-                        obj1.bounce(obj2, this.ctx);
+                        obj1.bounce(obj2);
                     }
-                    if (obj1.constructor.name === "Ball" && obj2.constructor.name === "GoalZone"){
-                        this.scoreGoal(obj2.team)
-                        console.log("goal!")
+
+                    // if (obj1.constructor.name === "Ball" && obj2.constructor.name === "GoalZone"){
+                    //     this.scoreGoal(obj2.team)
+                    //     console.log("goal!")
+                    // }
+                    // if (obj2.constructor.name === "Ball" && obj1.constructor.name === "GoalZone"){
+                    //     this.scoreGoal(obj2.team)
+                    //     console.log("goal!")
+                    // }
+
+                    if (obj1.shape === "circle" && obj2.shape === "rectangle") {
+                        if (obj1.constructor.name === "Ball" && obj2.constructor.name === "GoalZone"){
+                                this.scoreGoal(obj2.team)
+                                console.log("goal!")
+                                
+                        } else if (obj2.constructor.name !== "GoalZone") {
+                            console.log(obj2.constructor.name)
+                            obj2.bounce(obj1);
+                        }
                     }
-                    if (obj2.constructor.name === "Ball" && obj1.constructor.name === "GoalZone"){
-                        this.scoreGoal(obj2.team)
-                        console.log("goal!")
+
+                    if (obj1.shape === "rectangle" && obj2.shape === "circle") {
+                        if (obj1.constructor.name === "GoalZone" && obj2.constructor.name === "Ball"){
+                                this.scoreGoal(obj2.team)
+                                console.log("goal!")
+                                
+                        } else if (obj1.constructor.name != "GoalZone"){
+                            console.log(obj1.constructor.name)
+                            obj1.bounce(obj2);
+                        }
                     }
 
                 }
