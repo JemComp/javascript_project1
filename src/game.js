@@ -33,29 +33,62 @@ class Game {
 
 
         this.goal1 = new GoalZone({
-            pos: [this.DIM_X - 50, this.DIM_Y/2 - 60],
+            pos: [this.DIM_X - 60, this.DIM_Y/2 - 50],
             vel: [0, 0],
-            dim: [50,120],
+            dim: [60,100],
             team: 1
         })
 
 
         this.goal2 = new GoalZone({
-            pos: [0, this.DIM_Y/2 - 60],
+            pos: [0, this.DIM_Y/2 - 50],
             vel: [0, 0],
-            dim: [50,120],
+            dim: [60,100],
             team: 2
         })
 
-        this.block = new Placeable ({   
-            pos: [this.DIM_X/2 + 25, this.DIM_Y/2 - 25],
+        // this.block = new Placeable ({   
+        //     pos: [this.DIM_X/2 + 25, this.DIM_Y/2 - 25],
+        //     vel: [0, 0],
+        //     dim: [50,50],
+        //     mass: 200
+        // })
+
+        this.post1 = new Placeable({
+            mass: 99999999,
+            pos: [0, this.DIM_Y/2 - 66],
             vel: [0, 0],
-            dim: [50,50],
-            mass: 200
+            dim: [65,12],
+            // color: "#ffffff00"
+
+        })
+
+        this.post2 = new Placeable({
+            mass: 99999999,
+            pos: [0, this.DIM_Y/2 + 53],
+            vel: [0, 0],
+            dim: [65,12],
+            // color: "#ffffff00"
+        })
+
+        this.post3 = new Placeable({
+            mass: 99999999,
+            pos: [this.DIM_X - 63, this.DIM_Y/2 - 63],
+            vel: [0, 0],
+            dim: [65,12],
+            // color: "#ffffff00"
+        })
+
+        this.post4 = new Placeable({
+            mass: 99999999,
+            pos: [this.DIM_X - 63, this.DIM_Y/2 + 53],
+            vel: [0, 0],
+            dim: [65,12],
+            // color: "#ffffff00"
         })
 
         this.scoreCard = new Scorecard([this.DIM_X/2 - 44,this.DIM_Y/2 - 245])
-        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2] ;
+        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2, this.post1, this.post2, this.post3, this.post4] ;
         this.pressedKeys = {};
         this.keyToggled = {};
     }

@@ -14,6 +14,7 @@ class Placeable extends MovingObject{
         this.dim = options["dim"]
         this.shape = "rectangle"
         this.friction = .9;
+        
     }
 
     draw(ctx) {
