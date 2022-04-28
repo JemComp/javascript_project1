@@ -33,9 +33,9 @@ class Game {
 
 
         this.goal1 = new GoalZone({
-            pos: [this.DIM_X - 60, this.DIM_Y/2 - 50],
+            pos: [this.DIM_X - 50, this.DIM_Y/2 - 50],
             vel: [0, 0],
-            dim: [60,100],
+            dim: [50,100],
             team: 1
         })
 
@@ -43,7 +43,7 @@ class Game {
         this.goal2 = new GoalZone({
             pos: [0, this.DIM_Y/2 - 50],
             vel: [0, 0],
-            dim: [60,100],
+            dim: [50,100],
             team: 2
         })
 
