@@ -55,7 +55,7 @@ class Game {
         })
 
         this.scoreCard = new Scorecard([this.DIM_X/2 - 44,this.DIM_Y/2 - 245])
-        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2];
+        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2] ;
         this.pressedKeys = {};
         this.keyToggled = {};
     }
@@ -147,7 +147,7 @@ class Game {
                 const obj1 = this.movables[i];
                 const obj2 = this.movables[j];
                 if (this.collision(obj1, obj2)) {
-                    console.log("hit!")
+                    // console.log("hit!")
                     // console.log(obj1.constructor.name, obj2.constructor.name)
                     if (obj1.shape === "circle" && obj2.shape === "circle") {
                         obj1.bounce(obj2);

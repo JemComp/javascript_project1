@@ -3,6 +3,7 @@
   \*************************************************************************************************************************************/
 
 body {
+  background-color: darkcyan;
   display: flex;
   flex-direction:column;
   align-items: center;
@@ -14,6 +15,7 @@ body {
 }
 
 .title {
+  font-family: 'Press Start 2P', cursive;
   font-size: 50px;
   margin: 20px;
 }
