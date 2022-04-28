@@ -2,6 +2,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
 body {
+  font-family: "Press Start 2P", cursive;
   background-color: darkcyan;
   display: flex;
   flex-direction: column;
@@ -10,6 +11,7 @@ body {
 
 #game-canvas {
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 .title {

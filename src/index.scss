@@ -1,5 +1,6 @@
 
 body {
+    font-family: 'Press Start 2P', cursive;
     background-color: darkcyan;
     display: flex;
     flex-direction:column;
@@ -9,6 +10,7 @@ body {
   #game-canvas {
   
     border: 1px solid black;
+    border-radius: 5px;
   }
   
   .title {
@@ -16,3 +18,4 @@ body {
     font-size: 50px;
     margin: 20px;
   }
+
