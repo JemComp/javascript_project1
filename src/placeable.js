@@ -30,14 +30,13 @@ class Placeable extends MovingObject{
         
         this
         if (otherObj.center()[0] > this.pos[0] && otherObj.center()[0] < this.pos[0] + this.dim[0]) {
-           console.log("rectangle range", this.pos, this.pos[0] + this.dim[0])
-           console.log("circle range", otherObj.pos[0] )
-         
             otherObj.vel = [otherObj.vel[0], v2y];
-            console.log("vertical hit")
-        } else {
+        } else if (otherObj.center()[1] > this.pos[1] && otherObj.center()[1] < this.pos[1] + this.dim[1])
+        {
             otherObj.vel  = [v2x, otherObj.vel[1]];
-            console.log("side hit")
+        }
+        else {
+            otherObj.vel = [v2x, v2y]
         }
 
         this.vel = [v1x, v1y];

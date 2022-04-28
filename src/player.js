@@ -17,23 +17,23 @@ class Player extends MovingObject {
     moveInput(direction) {
         switch(direction) {
             case "up":
-                if (this.vel[1] > -8) {
-                    this.vel[1] -= .5;
+                if (this.vel[1] > -10) {
+                    this.vel[1] -= .8;
                 }  
               break;
             case "down":
-              if (this.vel[1] < 8) {
-                  this.vel[1] += .5;
+              if (this.vel[1] < 10) {
+                  this.vel[1] += .8;
               }  
               break;
             case "left":
-                if (this.vel[0] > -8) {
-                    this.vel[0] -= .5;
+                if (this.vel[0] > -10) {
+                    this.vel[0] -= .8;
                 }  
                 break;
             case "right":
-                if (this.vel[0] < 8) {
-                    this.vel[0] += .5;
+                if (this.vel[0] < 10) {
+                    this.vel[0] += .8;
                 }  
                 break;
             case "launch": 

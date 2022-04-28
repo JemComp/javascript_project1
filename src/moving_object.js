@@ -74,6 +74,7 @@ class MovingObject {
 
         this.vel = [v1x, v1y];
         otherObj.vel = [v2x, v2y];
+
     }
 
     //angle of velocity

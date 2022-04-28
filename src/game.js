@@ -2,6 +2,7 @@ import Ball from "./ball";
 import Player from "./player";
 import Placeable from "./placeable";
 import GoalZone from "./goal_zone";
+import Goal from "./goal";
 import Scorecard from "./scorecard";
 // const Field = require("./field")
 
@@ -9,7 +10,7 @@ import Scorecard from "./scorecard";
 class Game {
 
     constructor() {
-        this.DIM_X = 1000;
+        this.DIM_X = 960;
         this.DIM_Y = 600;
         this.players = []; 
         this.ball = new Ball({ 
@@ -18,13 +19,13 @@ class Game {
         })
 
         this.player1 = new Player({ 
-            pos: [this.DIM_X/2 - 150, this.DIM_Y/2 ],
+            pos: [this.DIM_X/2 - 370, this.DIM_Y/2 ],
             vel: [0, 0],
             team: 1
         })
 
         this.player2 = new Player({ 
-            pos: [this.DIM_X/2 + 150, this.DIM_Y/2 ],
+            pos: [this.DIM_X/2 + 370, this.DIM_Y/2 ],
             vel: [0, 0],
             team: 2,
             color: "blue"
@@ -32,17 +33,17 @@ class Game {
 
 
         this.goal1 = new GoalZone({
-            pos: [this.DIM_X-50, this.DIM_Y/2 - 25], 
+            pos: [this.DIM_X - 50, this.DIM_Y/2 - 60],
             vel: [0, 0],
-            dim: [50,50],
+            dim: [50,120],
             team: 1
-
         })
 
+
         this.goal2 = new GoalZone({
-            pos: [0, this.DIM_Y/2 - 25],
+            pos: [0, this.DIM_Y/2 - 60],
             vel: [0, 0],
-            dim: [50,50],
+            dim: [50,120],
             team: 2
         })
 
@@ -53,8 +54,8 @@ class Game {
             mass: 200
         })
 
-        this.scoreCard = new Scorecard([this.DIM_X/2,this.DIM_Y/2])
-        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2, this.block];
+        this.scoreCard = new Scorecard([this.DIM_X/2 - 44,this.DIM_Y/2 - 245])
+        this.movables = [this.ball, this.player1, this.player2, this.goal1, this.goal2];
         this.pressedKeys = {};
         this.keyToggled = {};
     }
