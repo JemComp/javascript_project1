@@ -12,7 +12,7 @@ class Ball extends MovingObject {
         });
         this.friction = .98;
         this.ballPic = new Image();
-        this.ballPic.src = "../src/images/soccerBall.png"
+        this.ballPic.src = "./src/images/soccerBall.png"
     }
 
     draw(ctx) {

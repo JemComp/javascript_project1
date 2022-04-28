@@ -14,10 +14,10 @@ class GoalZone extends Placeable{
         this.team = options["team"]
         this.goal = new Image();
         if (this.team === 1) {
-            this.goal.src = "../src/images/goalRight.png"
+            this.goal.src = "./src/images/goalRight.png"
         }
         else {
-            this.goal.src = "../src/images/goalLeft.png"
+            this.goal.src = "./src/images/goalLeft.png"
         }
     }
 

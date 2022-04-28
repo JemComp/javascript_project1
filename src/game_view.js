@@ -6,7 +6,7 @@ class GameView {
         this.game = game,
         this.ctx = contex;
         this.field = new Image();
-        this.field.src = "../src/images/soccerField.png"
+        this.field.src = "./src/images/soccerField.png"
     }
 
     run() {
