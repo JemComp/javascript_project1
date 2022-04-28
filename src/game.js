@@ -56,7 +56,7 @@ class Game {
 
         this.post1 = new Placeable({
             mass: 99999999,
-            pos: [0, this.DIM_Y/2 - 66],
+            pos: [0, this.DIM_Y/2 - 68],
             vel: [0, 0],
             dim: [65,12],
             // color: "#ffffff00"
@@ -65,7 +65,7 @@ class Game {
 
         this.post2 = new Placeable({
             mass: 99999999,
-            pos: [0, this.DIM_Y/2 + 53],
+            pos: [0, this.DIM_Y/2 + 60],
             vel: [0, 0],
             dim: [65,12],
             // color: "#ffffff00"
@@ -73,7 +73,7 @@ class Game {
 
         this.post3 = new Placeable({
             mass: 99999999,
-            pos: [this.DIM_X - 63, this.DIM_Y/2 - 63],
+            pos: [this.DIM_X - 63, this.DIM_Y/2 - 68],
             vel: [0, 0],
             dim: [65,12],
             // color: "#ffffff00"
@@ -81,7 +81,7 @@ class Game {
 
         this.post4 = new Placeable({
             mass: 99999999,
-            pos: [this.DIM_X - 63, this.DIM_Y/2 + 53],
+            pos: [this.DIM_X - 63, this.DIM_Y/2 + 60],
             vel: [0, 0],
             dim: [65,12],
             // color: "#ffffff00"
